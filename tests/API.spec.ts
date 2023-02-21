@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test';
+import { Data } from '../test-data/Data';
 
 test.describe.serial('Trello API', async () => {
-    const boardName = 'My Board';
     let boardId: string;
 
     test('Create A Board', async ({ request }) => {
         const createBoard = await request.post('boards', {
-            params: { name: boardName },
+            params: { name: Data.boardName },
             data: {
                 'prefs_permissionLevel': 'public',
                 'prefs_background': 'green'
@@ -27,7 +27,7 @@ test.describe.serial('Trello API', async () => {
         const getBoard = await request.get(`boards/${boardId}`);
         expect(getBoard.status()).toBe(200);
         const response = await getBoard.json();
-        expect(response).toHaveProperty('name', boardName);
+        expect(response).toHaveProperty('name', Data.boardName);
     });
 
     test('Update A Board', async ({ request }) => {

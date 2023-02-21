@@ -1,25 +1,22 @@
 import test from '../support/custom-fixtures';
 import { expect } from '@playwright/test';
+import { Data } from '../test-data/Data';
 
 test.describe.serial('Trello UI', async () => {
-    const randomNumber = Math.floor(Math.random() * 900) + 100;
-    const workspaceName = `Workspace - ${randomNumber}`;
-    const logoPath = './test-data/logo.png';
-
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
     });
 
     test('Create A Workspace', async ({ page, header, buildWorkspaceModal, workspacePage }) => {
         await header.clickCreateWorkspace();
-        await buildWorkspaceModal.enterWorkspaceName(workspaceName);
+        await buildWorkspaceModal.enterWorkspaceName(Data.workspaceName);
         await buildWorkspaceModal.selectWorkspaceType('Engineering-IT');
         await buildWorkspaceModal.enterWorkspaceDescription('Just testing');
         await buildWorkspaceModal.clickContinue();
-        await buildWorkspaceModal.inviteMember("atsarankou@gmail.com");
+        await buildWorkspaceModal.inviteMember(Data.email);
         await workspacePage.clickChangeLogo();
-        await workspacePage.uploadLogo(logoPath);
-        await expect(workspacePage.workspaceName).toHaveText(workspaceName);
+        await workspacePage.uploadLogo(Data.logoPath);
+        await expect(workspacePage.workspaceName).toHaveText(Data.workspaceName);
         await workspacePage.collapseSidebar();
         await expect(page).toHaveScreenshot('WorkspacePage.png', { 
             fullPage: true, 
@@ -28,7 +25,7 @@ test.describe.serial('Trello UI', async () => {
     });
 
     test('Add A Board To The Workspace', async ({ header, workspacePage, createBoardModal, boardPage }) => {
-        await header.openWorkspace(workspaceName);
+        await header.openWorkspace(Data.workspaceName);
         await workspacePage.clickCreateNewBoard();
         await createBoardModal.clickStartWithTemplate();
         await createBoardModal.selectBoardTemplate('Simple Project Board');
@@ -37,9 +34,9 @@ test.describe.serial('Trello UI', async () => {
     });
 
     test('Delete The Workspace', async ({ sidebar, workspaceSettingsPage, abstractPage }) => {
-        await sidebar.expandWorkspaceOptions(workspaceName);
+        await sidebar.expandWorkspaceOptions(Data.workspaceName);
         await sidebar.clickSettings();
-        await workspaceSettingsPage.deleteWorkspace(workspaceName);
-        await expect(abstractPage.alertBanner).toHaveText(`The Workspace "${workspaceName}" has been deleted.`);
+        await workspaceSettingsPage.deleteWorkspace(Data.workspaceName);
+        await expect(abstractPage.alertBanner).toHaveText(`The Workspace "${Data.workspaceName}" has been deleted.`);
     });
 });

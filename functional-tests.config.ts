@@ -1,6 +1,7 @@
 import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
+  timeout: 60000,
   globalSetup: require.resolve('./support/global-setup'),
   use: {
     baseURL: 'https://trello.com',
@@ -17,7 +18,8 @@ const config: PlaywrightTestConfig = {
     }
   },
   expect: {
-    toHaveScreenshot: { maxDiffPixelRatio: 0.01 },
+    timeout: 10000,
+    toHaveScreenshot: { maxDiffPixelRatio: 0.01 }
   },
   reporter: [ ['html', { open: 'never' }] ],
   projects: [

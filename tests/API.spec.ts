@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { Data } from '../test-data/Data';
 
-test.describe.serial('Trello API', async () => {
+test.describe.serial('@api', async () => {
     let boardId: string;
 
     test('Create A Board', async ({ request }) => {

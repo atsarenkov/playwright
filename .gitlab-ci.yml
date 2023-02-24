@@ -1,18 +1,40 @@
 stages:
-  - test
+  - e2e
 
-tests:
-  stage: test
+.e2e: &e2e
+  stage: e2e
   image: mcr.microsoft.com/playwright:v1.30.0-focal
   script:
-    - npm ci
-    - npx playwright install chrome
-    - npx playwright install msedge
-    - npx playwright test tests/Functional.spec.ts --config=functional-tests.config.ts
-    - npx playwright test tests/API.spec.ts --config=api-tests.config.ts
+    - sh ./.ci.sh
   artifacts:
     when: always
     paths:
-      - /builds/alexeitsarenkov/playwright/playwright-report/
-      - /builds/alexeitsarenkov/playwright/test-results/
-      - /builds/alexeitsarenkov/playwright/**/*-snapshots
+      - ./playwright-report/
+      - ./test-results/
+
+api-tests:
+  <<: *e2e
+  variables:
+    CONFIG: "api"
+    TAG: api
+
+functional-tests:chrome:
+  <<: *e2e
+  variables:
+    CONFIG: "functional"
+    TAG: functional
+    BROWSER: "chrome"
+
+functional-tests:edge:
+  <<: *e2e
+  variables:
+    CONFIG: "functional"
+    TAG: functional
+    BROWSER: "msedge"
+
+functional-tests:firefox:
+  <<: *e2e
+  variables:
+    CONFIG: "functional"
+    TAG: functional
+    BROWSER: "firefox"

@@ -2,7 +2,7 @@ import test from '../support/custom-fixtures';
 import { expect } from '@playwright/test';
 import { Data } from '../test-data/Data';
 
-test.describe.serial('Trello UI', async () => {
+test.describe.serial('@functional', async () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
     });

@@ -7,7 +7,7 @@
     "cypress": "^7.7.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.31.1"
+    "@playwright/test": "^1.31.2"
   },
   "scripts": {},
   "keywords": [],

@@ -1,15 +1,13 @@
-import { PlaywrightTestConfig } from '@playwright/test';
-import { Data } from './test-data/Data';
+import { defineConfig } from '@playwright/test';
+import { key, token } from './test-data/Data';
 
-const config: PlaywrightTestConfig = {
+export default defineConfig ({
   use: {
     baseURL: 'https://api.trello.com/1/',
     extraHTTPHeaders: {
-      'Authorization': `OAuth oauth_consumer_key="${Data.key}", oauth_token="${Data.token}"`,
+      'Authorization': `OAuth oauth_consumer_key="${key}", oauth_token="${token}"`,
       'Content-Type': 'application/json'
     }
   },
   reporter: [ ['html', { open: 'never' }] ]
-}
-
-export default config;
+});

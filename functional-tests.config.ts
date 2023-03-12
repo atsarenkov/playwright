@@ -1,11 +1,12 @@
-import { PlaywrightTestConfig } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
+import path from 'path';
 
-const config: PlaywrightTestConfig = {
+export const storageState = path.join(__dirname, './support/storageState.json');
+
+export default defineConfig ({
   timeout: 60000,
-  globalSetup: require.resolve('./support/global-setup'),
   use: {
     baseURL: 'https://trello.com',
-    storageState: './support/storageState.json',
     viewport: { width: 1920, height: 1080 },
     ignoreHTTPSErrors: true,
     video: {
@@ -23,25 +24,33 @@ const config: PlaywrightTestConfig = {
   },
   reporter: [ ['html', { open: 'never' }] ],
   projects: [
+    {
+      name: 'setup',
+      testMatch: /login.setup\.ts/
+    },
     { 
-      name: 'chrome',  
+      name: 'chrome',
+      dependencies: ['setup'],  
       use: {
-        channel: 'chrome'
+        channel: 'chrome',
+        storageState: storageState
       }
     },
     { 
-      name: 'msedge',  
+      name: 'msedge',
+      dependencies: ['setup'],    
       use: {
-        channel: 'msedge'
+        channel: 'msedge',
+        storageState: storageState
       }
     },
     { 
-      name: 'firefox',  
+      name: 'firefox',
+      dependencies: ['setup'],    
       use: {
-        browserName: 'firefox'
+        browserName: 'firefox',
+        storageState: storageState
       }
     }
   ]
-}
-
-export default config;
+});

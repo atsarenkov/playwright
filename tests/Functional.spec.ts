@@ -13,7 +13,6 @@ test.describe.serial('@functional', async () => {
     await buildWorkspaceModal.enterWorkspaceDescription('Just testing');
     await buildWorkspaceModal.clickContinue();
     await buildWorkspaceModal.inviteMember(email);
-    await workspacePage.clickChangeLogo();
     await workspacePage.uploadLogo(logoPath);
     await expect(workspacePage.workspaceName).toHaveText(workspaceName);
     await workspacePage.collapseSidebar();

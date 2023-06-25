@@ -10,8 +10,8 @@ export class BuildWorkspaceModal {
   readonly inviteToWorkspaceButton: Locator;
   
   constructor(page: Page) {
-    this.workspaceNameField = page.locator("//*[text()='Workspace name']/following-sibling::input");
-    this.workSpaceTypeDropdown = page.locator("//*[text()='Workspace type']/following-sibling::div");
+    this.workspaceNameField = page.locator('//*[text()="Workspace name"]/following-sibling::input');
+    this.workSpaceTypeDropdown = page.locator('//*[text()="Workspace type"]/following-sibling::div');
     this.workSpaceTypeList = page.getByTestId(/team-type-input/);
     this.workspaceDescriptionField = page.locator('[id*=description]');
     this.continueButton = page.getByText('Continue');

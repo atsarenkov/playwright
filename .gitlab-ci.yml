@@ -3,7 +3,7 @@ stages:
 
 .e2e: &e2e
   stage: e2e
-  image: mcr.microsoft.com/playwright:v1.35.1
+  image: mcr.microsoft.com/playwright:v1.37.0
   script:
     - sh ./.ci.sh
   artifacts:

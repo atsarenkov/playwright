@@ -3,7 +3,7 @@ stages:
 
 .e2e: &e2e
   stage: e2e
-  image: mcr.microsoft.com/playwright:v1.30.0-focal
+  image: mcr.microsoft.com/playwright:v1.35.1
   script:
     - sh ./.ci.sh
   artifacts:
@@ -12,29 +12,26 @@ stages:
       - ./playwright-report/
       - ./test-results/
 
-api-tests:
+prod-api-tests:
   <<: *e2e
   variables:
-    CONFIG: "api"
-    TAG: api
+    BASE_URL: $PROD
+    PROJECT: api
 
-functional-tests:chrome:
+prod-functional-tests:chrome:
   <<: *e2e
   variables:
-    CONFIG: "functional"
-    TAG: functional
-    BROWSER: "chrome"
+    BASE_URL: $PROD
+    PROJECT: chrome
 
-functional-tests:edge:
+prod-functional-tests:edge:
   <<: *e2e
   variables:
-    CONFIG: "functional"
-    TAG: functional
-    BROWSER: "msedge"
+    BASE_URL: $PROD
+    PROJECT: msedge
 
-functional-tests:firefox:
+prod-functional-tests:firefox:
   <<: *e2e
   variables:
-    CONFIG: "functional"
-    TAG: functional
-    BROWSER: "firefox"
+    BASE_URL: $PROD
+    PROJECT: firefox

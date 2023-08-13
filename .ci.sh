@@ -1,12 +1,11 @@
 #!/bin/sh
 
-echo "Running $TAG tests"
-
 npm ci
 
-npx playwright install $BROWSER
+if [ $PROJECT != "api" ]
+then
+  BROWSER=$PROJECT
+  npx playwright install $BROWSER
+fi  
 
-npx playwright test \
-  --config=$CONFIG-tests.config.ts \
-  --grep $TAG \
-  --project=$BROWSER
+npx playwright test --project=$PROJECT

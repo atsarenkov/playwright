@@ -1,4 +1,5 @@
 import { defineConfig } from '@playwright/test';
+import { key, token } from './test-data/Data';
 import path from 'path';
 
 export const storageState = path.join(__dirname, './support/storageState.json');
@@ -6,7 +7,7 @@ export const storageState = path.join(__dirname, './support/storageState.json');
 export default defineConfig ({
   timeout: 60000,
   use: {
-    baseURL: 'https://trello.com',
+    baseURL: process.env.BASE_URL,
     viewport: { width: 1920, height: 1080 },
     ignoreHTTPSErrors: true,
     video: {
@@ -30,7 +31,8 @@ export default defineConfig ({
     },
     { 
       name: 'chrome',
-      dependencies: ['setup'],  
+      dependencies: ['setup'],
+      testMatch: /functional.spec\.ts/,
       use: {
         channel: 'chrome',
         storageState: storageState
@@ -38,7 +40,8 @@ export default defineConfig ({
     },
     { 
       name: 'msedge',
-      dependencies: ['setup'],    
+      dependencies: ['setup'],
+      testMatch: /functional.spec\.ts/,    
       use: {
         channel: 'msedge',
         storageState: storageState
@@ -46,10 +49,22 @@ export default defineConfig ({
     },
     { 
       name: 'firefox',
-      dependencies: ['setup'],    
+      dependencies: ['setup'],
+      testMatch: /functional.spec\.ts/,    
       use: {
         browserName: 'firefox',
         storageState: storageState
+      }
+    },
+    { 
+      name: 'api',
+      testMatch: /api.spec\.ts/,
+      use: {
+        baseURL: `${process.env.BASE_URL}/1/`,
+        extraHTTPHeaders: {
+          'Authorization': `OAuth oauth_consumer_key="${key}", oauth_token="${token}"`,
+          'Content-Type': 'application/json'
+        }
       }
     }
   ]

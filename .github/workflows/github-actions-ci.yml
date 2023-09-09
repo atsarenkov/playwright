@@ -23,7 +23,7 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         env:
-          BASE_URL: ${{ env.PROD }}
+          BASE_URL: ${{ vars.PROD }}
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}
           KEY: ${{ secrets.KEY }}

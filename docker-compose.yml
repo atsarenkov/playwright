@@ -1,17 +1,14 @@
 version: '3.8'
 
 services:
-  playwright:
-    image: playwright
+  playwright-tests:
     environment:
       - BASE_URL=${BASE_URL}
       - EMAIL=${EMAIL}
       - PASSWORD=${PASSWORD}
       - KEY=${KEY}
       - TOKEN=${TOKEN}
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    command: npx playwright test --workers=1
+    build: .
+    command: npx playwright test --workers=1 --retries=1
     volumes:
-      - ./playwright-report/:/playwright/playwright-report
+      - ./playwright-report:/playwright/playwright-report

@@ -9,3 +9,4 @@ export const workspaceName = `Workspace - ${randomNumber}`;
 export const logoPath = './test-data/logo.png';
 // API tests data
 export const boardName = `Board - ${randomNumber}`;
+export const organizationId =  process.env.ORGANIZATION_ID!;

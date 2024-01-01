@@ -27,7 +27,8 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}
           KEY: ${{ secrets.KEY }}
-          TOKEN: ${{ secrets.TOKEN }} 
+          TOKEN: ${{ secrets.TOKEN }}
+          ORGANIZATION_ID: ${{ secrets.ORGANIZATION_ID }} 
       - uses: actions/upload-artifact@v4
         if: always()
         with:

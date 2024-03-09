@@ -1,7 +1,7 @@
-import { test, expect } from '../support/custom-fixtures';
-import { workspaceName, email, logoPath } from '../test-data/Data';
+import { test, expect } from '../../support/custom-fixtures';
+import { workspaceName, email, logoPath } from '../../test-data/Data';
 
-test.describe.serial('@functional', async () => {
+test.describe.serial('@e2e', async () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });

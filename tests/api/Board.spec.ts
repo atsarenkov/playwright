@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { boardName } from '../test-data/Data';
+import { boardName } from '../../test-data/Data';
 
 test.describe.serial('@api', async () => {
   let boardId: string;

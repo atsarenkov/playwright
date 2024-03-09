@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { organizationId } from '../test-data/Data';
-import { organizationSchema } from '../zod-schemas/organization';
+import { organizationId } from '../../test-data/Data';
+import { organizationSchema } from '../../zod-json-schemas/Organization';
 
 test.describe('@api @schemaValidation', async () => {
-  test('Validate JSON Schema', async ({ request }) => {
+  test('Validate Organization JSON Schema', async ({ request }) => {
     const getOrganization = await request.get(`organization/${organizationId}`);
     expect(getOrganization.status()).toBe(200);
     const response = await getOrganization.json();

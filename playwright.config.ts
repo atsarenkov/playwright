@@ -32,7 +32,7 @@ export default defineConfig ({
     { 
       name: 'chrome',
       dependencies: ['setup'],
-      testMatch: /functional.spec\.ts/,
+      grep: /@e2e/,
       use: {
         channel: 'chrome',
         storageState: storageState
@@ -41,7 +41,7 @@ export default defineConfig ({
     { 
       name: 'msedge',
       dependencies: ['setup'],
-      testMatch: /functional.spec\.ts/,    
+      grep: /@e2e/,    
       use: {
         channel: 'msedge',
         storageState: storageState
@@ -50,7 +50,7 @@ export default defineConfig ({
     { 
       name: 'firefox',
       dependencies: ['setup'],
-      testMatch: /functional.spec\.ts/,    
+      grep: /@e2e/,    
       use: {
         browserName: 'firefox',
         storageState: storageState
@@ -58,7 +58,7 @@ export default defineConfig ({
     },
     { 
       name: 'api',
-      testMatch: /api.spec\.ts/,
+      grep: /@api/, 
       use: {
         baseURL: `${process.env.BASE_URL}/1/`,
         extraHTTPHeaders: {

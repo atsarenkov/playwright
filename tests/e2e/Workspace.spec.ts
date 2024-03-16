@@ -1,7 +1,7 @@
 import { test, expect } from '../../support/custom-fixtures';
 import { workspaceName, email, logoPath } from '../../test-data/Data';
 
-test.describe.serial('@e2e', async () => {
+test.describe.serial('Trello Workspaces', { tag: '@e2e' }, async () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });

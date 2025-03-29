@@ -12,9 +12,9 @@ export class WorkspacePage {
   constructor(page: Page) {
     this.page = page;
     this.profileImage = page.locator('//*[text()="Change logo"]/preceding-sibling::*');
-    this.uploadNewLogoButton = page.getByText('Upload a new logo');
+    this.uploadNewLogoButton = page.getByTestId('fileInput');
     this.createNewBoardItem = page.getByTestId('create-board-tile');
-    this.workspaceName = page.locator('[class$=header-content] h2');
+    this.workspaceName = page.locator('[id=content] h2').first();
     this.collapseSidebarIcon = page.getByAltText('Workspace navigation collapse icon');
   }
   
@@ -24,10 +24,7 @@ export class WorkspacePage {
       this.page.waitForEvent('filechooser'),
       this.uploadNewLogoButton.click()
     ]);
-    await Promise.all([
-      this.page.waitForResponse(response => response.url().includes('/logo')),
-      fileChooser.setFiles(filePath)
-    ]);
+    await fileChooser.setFiles(filePath);
   }
 
   async clickCreateNewBoard() {

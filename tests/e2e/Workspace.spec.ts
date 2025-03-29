@@ -28,7 +28,7 @@ test.describe.serial('Trello Workspaces', { tag: '@e2e' }, async () => {
     await createBoardModal.clickStartWithTemplate();
     await createBoardModal.selectBoardTemplate('Simple Project Board');
     await createBoardModal.clickCreate();
-    await expect(boardPage.boardContent).toHaveScreenshot('BoardContent.png');
+    await expect(boardPage.boardContent).toMatchAriaSnapshot({ name: 'board.aria.yml' });
   });
 
   test('Delete The Workspace', async ({ sidebar, workspaceSettingsPage, abstractPage }) => {

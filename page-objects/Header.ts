@@ -5,6 +5,7 @@ export class Header {
   readonly workspacesSelection: Locator;
   readonly workspaceList: Locator;
   readonly createButton: Locator;
+  readonly profileIcon: Locator;
   readonly createWorkspaceButton: Locator;
   
   constructor(page: Page) {
@@ -12,6 +13,7 @@ export class Header {
     this.workspacesSelection = page.getByLabel('Workspaces');
     this.workspaceList = page.getByTestId('workspace-list');
     this.createButton = page.getByLabel('Create board or Workspace');
+    this.profileIcon = page.getByTestId('header-member-menu-button');
     this.createWorkspaceButton = page.getByText('Create Workspace');
   }
 
@@ -24,7 +26,7 @@ export class Header {
   }
 
   async clickCreateWorkspace() {
-    await this.createButton.click();
+    await this.profileIcon.click();
     await this.createWorkspaceButton.click();
   }
 }

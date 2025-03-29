@@ -1,0 +1,67 @@
+- textbox "Board name":
+  - heading "Simple Project Board" [level=1]
+- button "Star or unstar board"
+- button "Workspace visible"
+- link "Board"
+- button "Customize views"
+- button "Power-Ups"
+- button "Automation"
+- button "Filter cards Filters":
+  - img "Filter cards"
+- button "Share"
+- button "Show menu"
+- list:
+  - textbox "Enter list name…"
+  - button "Add list"
+  - button "Cancel list editing"
+  - listitem:
+    - textbox
+    - textbox "BRAINSTORM 🤔"
+    - button
+    - list:
+      - listitem:
+        - button "Incomplete":
+          - img "Incomplete"
+        - link "✋🏿 Add what you'd like to work on below"
+        - text: "1"
+    - button "Add a card"
+    - button "Create from template…"
+  - listitem:
+    - textbox
+    - textbox "TODO 📚"
+    - button
+    - list:
+      - listitem:
+        - button "Incomplete":
+          - img "Incomplete"
+        - link "✋🏿 Move anything 'ready' here"
+        - text: "1"
+    - button "Add a card"
+    - button "Create from template…"
+  - listitem:
+    - textbox
+    - textbox "DOING ⚙️"
+    - button
+    - list:
+      - listitem:
+        - button "Incomplete":
+          - img "Incomplete"
+        - link "✋🏿 Move anything that is actually started here"
+        - text: "1"
+    - button "Add a card"
+    - button "Create from template…"
+  - listitem:
+    - textbox
+    - textbox "DONE! 🙌🏽"
+    - button
+    - list:
+      - listitem:
+        - button "Incomplete":
+          - img "Incomplete"
+        - link "✋🏿 Move anything from doing to done here"
+        - text: "1"
+      - listitem:
+        - link "Card Template 📝"
+        - text: This card is a template. 3/4
+    - button "Add a card"
+    - button "Create from template…"

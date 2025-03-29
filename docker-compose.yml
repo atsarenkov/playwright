@@ -1,14 +1,14 @@
-version: '3.8'
-
 services:
   playwright-tests:
     environment:
       - BASE_URL=${BASE_URL}
       - EMAIL=${EMAIL}
       - PASSWORD=${PASSWORD}
+      - SECRET=${SECRET}
       - KEY=${KEY}
       - TOKEN=${TOKEN}
     build: .
     command: npx playwright test --workers=1 --retries=1
     volumes:
       - ./playwright-report:/playwright/playwright-report
+      - ./tests/e2e/Workspace.spec.ts-snapshots:/playwright/tests/e2e/Workspace.spec.ts-snapshots

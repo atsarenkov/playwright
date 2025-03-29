@@ -20,7 +20,7 @@ export class Header {
   async openWorkspace(workspaceName: string) {
     await this.workspacesSelection.click();
     await Promise.all([
-      this.page.waitForResponse(response => response.url().includes('/me')),
+      this.page.waitForResponse(response => response.url().includes('/organizations')),
       this.workspaceList.getByText(workspaceName).click()
     ]);
   }

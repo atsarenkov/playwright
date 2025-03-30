@@ -24,7 +24,10 @@ export class WorkspacePage {
       this.page.waitForEvent('filechooser'),
       this.uploadNewLogoButton.click()
     ]);
-    await fileChooser.setFiles(filePath);
+    await Promise.all([
+      this.page.waitForResponse(response => response.url().includes('/logo')),
+      fileChooser.setFiles(filePath)
+    ]);
   }
 
   async clickCreateNewBoard() {

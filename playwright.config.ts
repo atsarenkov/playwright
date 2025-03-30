@@ -6,6 +6,7 @@ export const storageState = path.join(__dirname, './support/storageState.json');
 
 export default defineConfig ({
   timeout: 60000,
+  retries: process.env.CI ? 1 : 0,
   use: {
     baseURL: process.env.BASE_URL,
     viewport: { width: 1920, height: 1080 },
